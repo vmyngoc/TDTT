@@ -9,7 +9,7 @@ OPENWEATHER_API_KEY = os.getenv("OPENWEATHER_API_KEY", "").strip()
 # Thử One Call 3.0 trước, nếu lỗi/không có quyền sẽ tự fallback sang API 2.5 (current + forecast)
 OPENWEATHER_USE_ONECALL = os.getenv("OPENWEATHER_USE_ONECALL", "true").lower() == "true"
 OPENWEATHER_UNITS = os.getenv("OPENWEATHER_UNITS", "metric")  # metric | imperial | standard
-OPENWEATHER_LANG = os.getenv("OPENWEATHER_LANG", "vi")        # ngôn ngữ trả về mô tả thời tiết
+OPENWEATHER_LANG = os.getenv("OPENWEATHER_LANG", "vi")        
 
 # TTL cache (giây) để hạn chế số lần gọi API
 CACHE_TTL = int(os.getenv("CACHE_TTL", "600"))

@@ -27,7 +27,6 @@ def _ensure_api_key():
         raise WeatherError("Chưa cấu hình OPENWEATHER_API_KEY. Hãy tạo file .env và điền API key.")
 
 def _to_local_ts(ts_utc: int, tz_offset: int) -> int:
-    # Trả về timestamp 'giả địa phương' (UTC + offset) cho hiển thị
     return ts_utc + tz_offset
 
 def _kelvin_to_c(k: float) -> float:
@@ -37,7 +36,6 @@ def _pick(obj: Dict[str, Any], *keys) -> Dict[str, Any]:
     return {k: obj.get(k) for k in keys}
 
 def _http_get(url: str, params: Dict[str, Any], timeout=20) -> Dict[str, Any]:
-    # Retry nhẹ nhàng
     last_err = None
     for _ in range(3):
         try:
@@ -197,7 +195,6 @@ def get_weather(lat: float, lon: float, units: str = OPENWEATHER_UNITS, lang: st
     Trả về dict gồm: source, tz_offset, current, hourly (<=24), daily (<=8)
     """
     _ensure_api_key()
-    # Ưu tiên One Call 3.0
     if OPENWEATHER_USE_ONECALL:
         try:
             oc = _fetch_onecall(lat, lon, units, lang)
